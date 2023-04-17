@@ -29,8 +29,18 @@ button {
     height: 1.5rem;
     background-color: rgb(71, 195, 249);
     color: rgb(0, 0, 0);
+    stroke: rgb(0, 0, 0);
     font-weight: 600;
     border-radius: .2rem;
+    padding: 0 .5rem;
+    display: grid;
+    place-items: center;
+}
+button:hover {
+    outline: 2px solid rgb(71, 195, 249);
+    background-color: transparent; 
+    color: rgb(71, 195, 249);
+    stroke: rgb(71, 195, 249);
 }
 form {
     display: inline-flex;
@@ -43,7 +53,7 @@ form {
 
 
 
-.app {
+.subjectHolder {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,7 +61,6 @@ form {
 }
 
 .myList {
-    /* border: 1px solid transparent; */
     margin-top: .8rem;
     width:100%;
     max-width: 400px;
@@ -60,7 +69,6 @@ form {
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    /* border: 1px solid saddlebrown */
 }
 .myList > li {
     border-top: 1px solid white;
