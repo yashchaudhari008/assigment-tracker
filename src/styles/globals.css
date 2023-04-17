@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Inter;
+}
+body {
+    background-color: rgb(24, 24, 24);
+    color: white;
+}
+input[type="text"]{
+    border: none;
+    height: 1.5rem;
+    padding: 0 .4rem;
+    /* margin: 1rem; */
+    font-family: "Inter";
+    background-color: rgb(40, 40, 40);
+    color: rgb(206, 206, 206);
+    
+    border-radius: .2rem;
+}
+button {
+    border: none;
+    height: 1.5rem;
+    background-color: rgb(71, 195, 249);
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    border-radius: .2rem;
+}
+form {
+    display: inline-flex;
+    gap:.5rem;
+}
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.myList {
+    /* border: 1px solid transparent; */
+    margin-top: .8rem;
+    width:100%;
+    max-width: 400px;
+    list-style:none;
+    padding: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    /* border: 1px solid saddlebrown */
+}
+.myList > li {
+    border-top: 1px solid white;
+}
+.myList > li li {
+    cursor:pointer;
+} 
