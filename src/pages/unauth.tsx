@@ -13,7 +13,7 @@ export default function unauth() {
 					Cookies.set("token", token);
                     location.reload();
 				}}
-			></button>
+			>SET</button>
             </>
 	);
 }
