@@ -4,9 +4,9 @@ import type { NextRequest } from 'next/server'
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-    if(request.cookies.get('token')?.value !== 'yashadmin'){
+    if(request.cookies.get('token')?.value !== process.env.ADMIN_PASS){
         const response = NextResponse.rewrite(new URL('/unauth', request.url))
-        response.cookies.delete('token');
+        // response.cookies.delete('token');
         return response;
     };
 }

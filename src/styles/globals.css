@@ -1,78 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 * {
-    margin: 0;
-    box-sizing: border-box;
+	margin: 0;
+	box-sizing: border-box;
 }
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    font-family: Inter;
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	font-family: Inter;
 }
 body {
-    background-color: rgb(24, 24, 24);
-    color: white;
+	background-color: rgb(24, 24, 24);
+	color: white;
 }
-input[type="text"]{
-    border: none;
-    height: 1.5rem;
-    padding: 0 .4rem;
-    /* margin: 1rem; */
-    font-family: "Inter";
-    background-color: rgb(40, 40, 40);
-    color: rgb(206, 206, 206);
-    
-    border-radius: .2rem;
+input[type="text"] {
+	border: none;
+	height: 1.5rem;
+	padding: 0 0.4rem;
+	/* margin: 1rem; */
+	font-family: "Inter";
+	background-color: rgb(40, 40, 40);
+	color: rgb(206, 206, 206);
+
+	border-radius: 0.2rem;
 }
 button {
-    border: none;
-    height: 1.5rem;
-    background-color: rgb(71, 195, 249);
-    color: rgb(0, 0, 0);
-    stroke: rgb(0, 0, 0);
-    font-weight: 600;
-    border-radius: .2rem;
-    padding: 0 .5rem;
-    display: grid;
-    place-items: center;
+	border: none;
+	height: 1.5rem;
+	background-color: rgb(71, 195, 249);
+	color: rgb(0, 0, 0);
+	stroke: rgb(0, 0, 0);
+	font-weight: 600;
+	border-radius: 0.2rem;
+	padding: 0 0.5rem;
+	display: grid;
+	place-items: center;
 }
 button:hover {
-    outline: 2px solid rgb(71, 195, 249);
-    background-color: transparent; 
-    color: rgb(71, 195, 249);
-    stroke: rgb(71, 195, 249);
+	outline: 2px solid rgb(71, 195, 249);
+	background-color: transparent;
+	color: rgb(71, 195, 249);
+	stroke: rgb(71, 195, 249);
 }
 form {
-    display: inline-flex;
-    gap:.5rem;
+	display: inline-flex;
+	gap: 0.5rem;
 }
 .completed {
-    text-decoration: line-through;
-    color: gray;
+	text-decoration: line-through;
+	color: gray;
 }
 
+.loading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1rem;
+	font-size: 1.5rem;
+}
+.loading span {
+	padding: 1rem;
+	display: grid;
+	place-items: center;
+	font-size: 2rem;
 
+	animation: rotate-full 1.2s linear infinite;
+}
+@keyframes rotate-full {
+	to {
+		transform: rotate(360deg);
+	}
+}
 
 .subjectHolder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1rem;
 }
 
 .myList {
-    margin-top: .8rem;
-    width:100%;
-    max-width: 400px;
-    list-style:none;
-    padding: 0.2rem;
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
+	margin-top: 0.8rem;
+	width: 100%;
+	max-width: 400px;
+	list-style: none;
+	padding: 0.2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
 }
 .myList > li {
-    border-top: 1px solid white;
+	border-top: 1px solid white;
 }
 .myList > li li {
-    cursor:pointer;
-} 
+	cursor: pointer;
+}

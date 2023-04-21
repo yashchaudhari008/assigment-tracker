@@ -6,13 +6,18 @@ import Assignment from "@/components/Assignment";
 import CreateForm from "@/components/CreateForm";
 import Spacer from "@/components/Spacer";
 import { stringifySubjects } from "@/helper/output";
+import Loading from "./Loading";
 export default function SubjectsHolder() {
 	const [subjects, setSubjects] = useState<subjectType[]>([]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		fetch("/api/subject")
 			.then((res) => res.json())
-			.then((res) => setSubjects(res.data));
+			.then((res) => {
+				setSubjects(res.data);
+				setLoading(false);
+			});
 	}, []);
 
 	const createSubject = (event: any) => {
@@ -84,7 +89,9 @@ export default function SubjectsHolder() {
 			});
 	};
 
-	return (
+	return loading ? (
+		<Loading />
+	) : (
 		<div className="subjectHolder">
 			<CreateForm
 				showLabel={true}
@@ -128,7 +135,7 @@ function Subject({ data, markCompleted, addAssignment }: any) {
 							markCompleted={markCompleted}
 						/>
 					))}
-					<Spacer space={5}/>
+				<Spacer space={5} />
 				<CreateForm
 					onSubmitHandler={(e: Event) => addAssignment(data.subject, e)}
 					name="Assignment"
@@ -137,4 +144,3 @@ function Subject({ data, markCompleted, addAssignment }: any) {
 		</li>
 	);
 }
-
