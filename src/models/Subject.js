@@ -7,7 +7,6 @@ const SubjectSchema = new mongoose.Schema(
 			{
 				name: { type: String, required: true, trim: true },
 				completed: { type: Boolean},
-				checked: { type: Boolean},
 				sumbitted: { type: Boolean},
 			},
 		],
@@ -23,7 +22,6 @@ SubjectSchema.methods = {
         const newAssignment = {
             name: name,
             completed: false,
-            checked: false,
             sumbitted: false,
         };
         const exists = this.assignments.some((entry) =>
@@ -47,15 +45,6 @@ SubjectSchema.methods = {
         );
         if(exists){
             exists.completed =completed;
-        }
-        await this.save();
-    },
-    markAsCheckedAssignment:  async function (name, checked) {
-        const exists = this.assignments.find((entry) =>
-            entry.name === name
-        );
-        if(exists){
-            exists.checked = checked;
         }
         await this.save();
     },
