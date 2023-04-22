@@ -121,13 +121,21 @@ export default function SubjectsHolder() {
 						return first.subject.localeCompare(second.subject);
 					})
 					.map((eachSub: subjectType) => (
-						<Subject
-							key={eachSub.subject as Key}
-							data={eachSub}
-							markCompleted={markCompleted}
-							markSubmitted={markSubmitted}
-							addAssignment={addAssignment}
-						/>
+						<>
+							<Subject
+								key={eachSub.subject as Key}
+								data={eachSub}
+								markCompleted={markCompleted}
+								markSubmitted={markSubmitted}
+							>
+							<CreateForm
+								onSubmitHandler={(e: Event) =>
+									addAssignment(eachSub.subject, e)
+								}
+								name="Assignment"
+							/>
+							</Subject>
+						</>
 					))}
 			</div>
 		</div>

@@ -1,15 +1,14 @@
 import React from "react";
 import { assignmentType } from "@/types/assignment";
 import Assignment from "@/components/Assignment";
-import CreateForm from "@/components/CreateForm";
 import Spacer from "@/components/Spacer";
 import styles from "./Subject.module.css";
 
 export default function Subject({
 	data,
 	markCompleted,
-	addAssignment,
 	markSubmitted,
+	children
 }: any) {
 	return (
 		<div className={styles.subject}>
@@ -31,10 +30,7 @@ export default function Subject({
 						/>
 					))}
 				<Spacer space={10} />
-				<CreateForm
-					onSubmitHandler={(e: Event) => addAssignment(data.subject, e)}
-					name="Assignment"
-				/>
+				{children}
 			</ul>
 		</div>
 	);

@@ -58,6 +58,9 @@ form {
 	text-decoration: line-through;
 	color: gray;
 }
+.unclickable * {
+	pointer-events: none;
+}
 
 .loading {
 	display: flex;
