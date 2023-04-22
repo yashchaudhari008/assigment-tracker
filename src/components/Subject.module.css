@@ -1,0 +1,10 @@
+.subject {
+	border-radius: 0.5rem;
+	flex: 1;
+	max-width: 450px;
+	padding: 0.8rem;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+.subject h3 {
+	padding: 0.5rem 1rem;
+}

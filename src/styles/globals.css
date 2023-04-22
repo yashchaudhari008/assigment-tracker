@@ -2,7 +2,7 @@
 :root {
 	--borderRadius: 0.2rem;
 	--appBackgroundColor: rgb(24, 24, 24);
-	--appTextColor:white ;
+	--appTextColor: white;
 	--accentColor: rgb(204, 204, 204);
 }
 * {
@@ -20,7 +20,8 @@ body {
 	background-color: var(--appBackgroundColor);
 	color: var(--appTextColor);
 }
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
 	border: none;
 	height: 1.5rem;
 	padding: 0 0.4rem;
@@ -79,23 +80,22 @@ form {
 	}
 }
 
-.subjectHolder {
+.appHolder {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding: 1rem;
+	gap: 1rem;
 }
-
-.myList {
-	margin-top: 0.8rem;
-	width: 100%;
-	max-width: 400px;
-	list-style: none;
-	padding: 0.2rem;
+.appHolder .topBar {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	gap: 0.5rem;
 }
-.myList > li {
-	border-top: 1px solid white;
+.subjectHolder {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
 }

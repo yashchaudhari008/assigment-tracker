@@ -1,24 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Cookies from "js-cookie";
 
 export default function unauth() {
-	const [token, setToken] = useState<string>("");
+	const addToken = (event: any) => {
+		event.preventDefault();
+		Cookies.set("token", event.target.token.value);
+		location.reload();
+	};
 	return (
-		<form
-			onSubmit={(e) => {
-				e.preventDefault();
-				Cookies.set("token", token);
-				location.reload();
-			}}
-		>
-			<label htmlFor="token">Token: </label>
-			<input
-				name="token"
-				type="password"
-				value={token}
-				onChange={(e) => setToken(e.target.value)}
-			></input>
-			<button type="submit">SET</button>
-		</form>
+		<div className="appHolder">
+			<p>Incorrect Token or No Token Present !</p>
+			<form onSubmit={addToken}>
+				<input name="token" placeholder="New Token" type="password"></input>
+				<button type="submit"> Save Token</button>
+			</form>
+		</div>
 	);
 }

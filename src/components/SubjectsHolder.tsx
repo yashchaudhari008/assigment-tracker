@@ -1,12 +1,10 @@
 import React from "react";
 import { Key, useEffect, useState } from "react";
 import { subjectType } from "@/types/subject";
-import { assignmentType } from "@/types/assignment";
-import Assignment from "@/components/Assignment";
 import CreateForm from "@/components/CreateForm";
-import Spacer from "@/components/Spacer";
 import { stringifySubjects } from "@/helper/output";
 import Loading from "./Loading";
+import Subject from "./Subject";
 export default function SubjectsHolder() {
 	const [subjects, setSubjects] = useState<subjectType[]>([]);
 	const [loading, setLoading] = useState(true);
@@ -106,16 +104,18 @@ export default function SubjectsHolder() {
 	return loading ? (
 		<Loading />
 	) : (
-		<div className="subjectHolder">
-			<CreateForm
-				showLabel={true}
-				onSubmitHandler={createSubject}
-				name={"Subject"}
-			/>
-			<button onClick={() => stringifySubjects(subjects)}>
-				Copy to Clipboard
-			</button>
-			<ul className="myList">
+		<div className="appHolder">
+			<div className="topBar">
+				<CreateForm
+					showLabel={true}
+					onSubmitHandler={createSubject}
+					name={"Subject"}
+				/>
+				<button onClick={() => stringifySubjects(subjects)}>
+					Copy to Clipboard
+				</button>
+			</div>
+			<div className="subjectHolder">
 				{subjects
 					.sort((first, second) => {
 						return first.subject.localeCompare(second.subject);
@@ -129,38 +129,7 @@ export default function SubjectsHolder() {
 							addAssignment={addAssignment}
 						/>
 					))}
-			</ul>
+			</div>
 		</div>
-	);
-}
-
-function Subject({ data, markCompleted, addAssignment, markSubmitted }: any) {
-	return (
-		<li>
-			<h3>{data.subject} </h3>
-			<Spacer space={5} />
-			<ul>
-				{data.assignments
-					.sort((first: assignmentType, second: assignmentType) => {
-						return first.name.localeCompare(second.name);
-					})
-					.map((eachAssign: assignmentType) => (
-						<Assignment
-							key={eachAssign.name}
-							subject={data.subject}
-							assignment={eachAssign.name}
-							completed={eachAssign.completed}
-							submitted={eachAssign.submitted}
-							markCompleted={markCompleted}
-							markSubmitted={markSubmitted}
-						/>
-					))}
-				<Spacer space={5} />
-				<CreateForm
-					onSubmitHandler={(e: Event) => addAssignment(data.subject, e)}
-					name="Assignment"
-				/>
-			</ul>
-		</li>
 	);
 }
