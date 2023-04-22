@@ -26,9 +26,9 @@ export default async function handler(
 		const { subject, assignment, completed, submitted } = req.body;
 
 		const subjectFound = await Subject.findOne({ subject: subject });
-		if (completed)
+		if (completed != null)
 			await subjectFound.markAsCompleteAssignment(assignment, completed);
-		if (submitted)
+		if (submitted != null)
 			await subjectFound.markAsSubmittedAssignment(assignment, submitted);
 		return res.status(201).json({ success: true, data: subjectFound });
 	} else if (req.method === "DELETE") {
