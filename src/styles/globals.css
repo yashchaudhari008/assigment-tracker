@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+:root {
+	--borderRadius: 0.2rem;
+	--appBackgroundColor: rgb(24, 24, 24);
+	--appTextColor:white ;
+	--accentColor: rgb(204, 204, 204);
+}
 * {
 	margin: 0;
 	box-sizing: border-box;
@@ -11,8 +17,8 @@ body {
 	font-family: Inter;
 }
 body {
-	background-color: rgb(24, 24, 24);
-	color: white;
+	background-color: var(--appBackgroundColor);
+	color: var(--appTextColor);
 }
 input[type="text"] {
 	border: none;
@@ -23,25 +29,25 @@ input[type="text"] {
 	background-color: rgb(40, 40, 40);
 	color: rgb(206, 206, 206);
 
-	border-radius: 0.2rem;
+	border-radius: var(--borderRadius);
 }
 button {
 	border: none;
 	height: 1.5rem;
-	background-color: rgb(71, 195, 249);
+	background-color: var(--accentColor);
 	color: rgb(0, 0, 0);
 	stroke: rgb(0, 0, 0);
 	font-weight: 600;
-	border-radius: 0.2rem;
+	border-radius: var(--borderRadius);
 	padding: 0 0.5rem;
 	display: grid;
 	place-items: center;
 }
 button:hover {
-	outline: 2px solid rgb(71, 195, 249);
+	outline: 2px solid var(--accentColor);
 	background-color: transparent;
-	color: rgb(71, 195, 249);
-	stroke: rgb(71, 195, 249);
+	color: var(--accentColor);
+	stroke: var(--accentColor);
 }
 form {
 	display: inline-flex;
@@ -92,7 +98,4 @@ form {
 }
 .myList > li {
 	border-top: 1px solid white;
-}
-.myList > li li {
-	cursor: pointer;
 }

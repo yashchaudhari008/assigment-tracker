@@ -40,7 +40,6 @@ export default function SubjectsHolder() {
 
 	const addAssignment = (subject: string, event: any) => {
 		event.preventDefault();
-		console.log(event);
 		const assignment = event.target.assignment.value;
 		fetch("/api/subject/assignment", {
 			method: "POST",
@@ -62,12 +61,7 @@ export default function SubjectsHolder() {
 			});
 	};
 
-	const markCompleted = (
-		subject: any,
-		assignment: any,
-		completed: boolean,
-		setIsCompleted: any
-	) => {
+	const markCompleted = (subject: any, assignment: any, completed: boolean) => {
 		fetch("/api/subject/assignment", {
 			method: "PATCH",
 			headers: {
@@ -85,7 +79,27 @@ export default function SubjectsHolder() {
 					...old.filter((e: any) => e.subject !== subject),
 					res.data,
 				]);
-				setIsCompleted((old: boolean) => !old);
+			});
+	};
+
+	const markSubmitted = (subject: any, assignment: any, submitted: boolean) => {
+		fetch("/api/subject/assignment", {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				subject: subject,
+				assignment: assignment,
+				submitted: submitted,
+			}),
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				setSubjects((old: any) => [
+					...old.filter((e: any) => e.subject !== subject),
+					res.data,
+				]);
 			});
 	};
 
@@ -98,7 +112,9 @@ export default function SubjectsHolder() {
 				onSubmitHandler={createSubject}
 				name={"Subject"}
 			/>
-			<button onClick={() => stringifySubjects(subjects)}>GET OUT</button>
+			<button onClick={() => stringifySubjects(subjects)}>
+				Copy to Clipboard
+			</button>
 			<ul className="myList">
 				{subjects
 					.sort((first, second) => {
@@ -109,6 +125,7 @@ export default function SubjectsHolder() {
 							key={eachSub.subject as Key}
 							data={eachSub}
 							markCompleted={markCompleted}
+							markSubmitted={markSubmitted}
 							addAssignment={addAssignment}
 						/>
 					))}
@@ -117,10 +134,11 @@ export default function SubjectsHolder() {
 	);
 }
 
-function Subject({ data, markCompleted, addAssignment }: any) {
+function Subject({ data, markCompleted, addAssignment, markSubmitted }: any) {
 	return (
 		<li>
-			Subject : {data.subject}{" "}
+			<h3>{data.subject} </h3>
+			<Spacer space={5} />
 			<ul>
 				{data.assignments
 					.sort((first: assignmentType, second: assignmentType) => {
@@ -132,7 +150,9 @@ function Subject({ data, markCompleted, addAssignment }: any) {
 							subject={data.subject}
 							assignment={eachAssign.name}
 							completed={eachAssign.completed}
+							submitted={eachAssign.submitted}
 							markCompleted={markCompleted}
+							markSubmitted={markSubmitted}
 						/>
 					))}
 				<Spacer space={5} />

@@ -1,0 +1,24 @@
+.badge {
+	display: inline-flex;
+	border-radius: var(--borderRadius);
+	font-size: 0.6rem;
+	font-weight: 600;
+	padding: 0.2rem 0.4rem;
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 0.1rem;
+	cursor: pointer;
+}
+.red {
+	background-color: rgb(212, 49, 49);
+}
+.green {
+	background-color: rgb(49, 212, 49);
+	color: white;
+}
+.blue {
+	background-color: rgb(49, 49, 212);
+}
+.gray {
+	background-color: gray;
+}
