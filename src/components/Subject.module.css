@@ -1,6 +1,7 @@
 .subject {
 	border-radius: 0.5rem;
 	flex: 1;
+	min-width: 350px;
 	max-width: 450px;
 	padding: 0.8rem;
 	background-color: rgba(0, 0, 0, 0.2);
