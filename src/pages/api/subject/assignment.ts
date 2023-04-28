@@ -18,14 +18,14 @@ export default async function handler(
 		return res.status(400).json({ success: false });
 	} else if (req.method === "POST") {
 		const { subject, assignment } = req.body;
-		const subjectFound = await Subject.findOne({ subject: subject });
+		const subjectFound = await Subject.findOne({ subject: subject, username: req.cookies["username"] });
 
 		await subjectFound.addAssignment(assignment);
 		return res.status(201).json({ success: true, data: subjectFound });
 	} else if (req.method === "PATCH") {
 		const { subject, assignment, completed, submitted } = req.body;
 
-		const subjectFound = await Subject.findOne({ subject: subject });
+		const subjectFound = await Subject.findOne({ subject: subject, username: req.cookies["username"] });
 		if (completed != null)
 			await subjectFound.markAsCompleteAssignment(assignment, completed);
 		if (submitted != null)
@@ -33,7 +33,7 @@ export default async function handler(
 		return res.status(201).json({ success: true, data: subjectFound });
 	} else if (req.method === "DELETE") {
 		const { subject, assignment } = req.query;
-		const subjectFound = await Subject.findOne({ subject: subject });
+		const subjectFound = await Subject.findOne({ subject: subject, username: req.cookies["username"] });
 		if (subjectFound) {
 			await subjectFound.deleteAssignment(assignment);
 			return res.status(201).json({ success: true, data: subjectFound });

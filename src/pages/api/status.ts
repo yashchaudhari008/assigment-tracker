@@ -16,7 +16,8 @@ export default async function handler(
 	await dbConnect();
 
 	if (req.method === "GET") {
-		const subjectsFound = await Subject.find();
+		const subjectsFound = await Subject.find({username: req.query.username});
+		console.log(req.query)
 		if (subjectsFound) {
 			return res.status(201).json({ success: true, data: subjectsFound });
 		}

@@ -10,6 +10,7 @@ const SubjectSchema = new mongoose.Schema(
 				submitted: { type: Boolean },
 			},
 		],
+		username: { type: String, required: true, trim: true }
 	},
 	{
 		timestamps: true,

@@ -5,6 +5,7 @@ import CreateForm from "@/components/CreateForm";
 import { stringifySubjects } from "@/helper/output";
 import Loading from "./Loading";
 import Subject from "./Subject";
+import Cookies from "js-cookie";
 export default function SubjectsHolder() {
 	const [subjects, setSubjects] = useState<subjectType[]>([]);
 	const [loading, setLoading] = useState(true);
@@ -114,6 +115,7 @@ export default function SubjectsHolder() {
 				<button onClick={() => stringifySubjects(subjects)}>
 					Copy to Clipboard
 				</button>
+				<button onClick={() => {Cookies.remove('token');location.reload()}}>Sign Out ({Cookies.get('username')})</button>
 			</div>
 			<div className="subjectHolder">
 				{subjects
@@ -121,21 +123,19 @@ export default function SubjectsHolder() {
 						return first.subject.localeCompare(second.subject);
 					})
 					.map((eachSub: subjectType) => (
-						<>
-							<Subject
-								key={eachSub.subject as Key}
-								data={eachSub}
-								markCompleted={markCompleted}
-								markSubmitted={markSubmitted}
-							>
+						<Subject
+							key={eachSub.subject as Key}
+							data={eachSub}
+							markCompleted={markCompleted}
+							markSubmitted={markSubmitted}
+						>
 							<CreateForm
 								onSubmitHandler={(e: Event) =>
 									addAssignment(eachSub.subject, e)
 								}
 								name="Assignment"
 							/>
-							</Subject>
-						</>
+						</Subject>
 					))}
 			</div>
 		</div>
