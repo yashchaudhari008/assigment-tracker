@@ -12,9 +12,9 @@ export default async function handler(req, res) {
 				const { username, password } = req.body;
 				const userFound = await User.findOne({ username: username });
 				const result = await userFound.matchPassword(password);
-                if (result) {
+				if (result) {
 					const token = await userFound.generateToken();
-					res.status(201).json({ success: result, data: token});
+					res.status(201).json({ success: result, data: token });
 				} else {
 					res.status(401).json({ success: false });
 				}

@@ -13,17 +13,15 @@ export default async function handler(req, res) {
 				const userFound = await User.findOne({ username: username });
 
 				const result = await userFound.verifyToken(token);
-                if (result) {
-					
-				res.status(201).json({ success: true, data: result});
+				if (result) {
+					res.status(201).json({ success: true, data: result });
 				}
-
 			} catch (error) {
 				res.status(403).json({ success: false });
 			}
 			break;
 		default:
-			res.status(405).json({ success: false});
+			res.status(405).json({ success: false });
 			break;
 	}
 }

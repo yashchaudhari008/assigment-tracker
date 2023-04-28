@@ -115,7 +115,14 @@ export default function SubjectsHolder() {
 				<button onClick={() => stringifySubjects(subjects)}>
 					Copy to Clipboard
 				</button>
-				<button onClick={() => {Cookies.remove('token');location.reload()}}>Sign Out ({Cookies.get('username')})</button>
+				<button
+					onClick={() => {
+						Cookies.remove("token");
+						location.reload();
+					}}
+				>
+					Sign Out ({Cookies.get("username")})
+				</button>
 			</div>
 			<div className="subjectHolder">
 				{subjects

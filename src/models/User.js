@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const UserSchema = new mongoose.Schema(
 	{
@@ -32,11 +32,11 @@ UserSchema.methods = {
 			console.error(err);
 		}
 	},
-    verifyToken : async function (token) {
+	verifyToken: async function (token) {
 		try {
-			let user =  await jwt.verify(token, process.env.SECRET_KEY);
+			let user = await jwt.verify(token, process.env.SECRET_KEY);
 			return user && this._id.equals(user._id);
-        } catch {
+		} catch {
 			console.error(err);
 		}
 	},
