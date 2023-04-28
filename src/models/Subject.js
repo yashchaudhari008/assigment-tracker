@@ -10,6 +10,7 @@ const SubjectSchema = new mongoose.Schema(
 				submitted: { type: Boolean },
 			},
 		],
+		username: { type: String, required: true, trim: true },
 	},
 	{
 		timestamps: true,
@@ -23,11 +24,11 @@ SubjectSchema.methods = {
 			entry.name === name ? true : false
 		); //Already exists
 		if (!exists) {
-            const newAssignment = {
-                name: name,
-                completed: false,
-                submitted: false,
-            };
+			const newAssignment = {
+				name: name,
+				completed: false,
+				submitted: false,
+			};
 			this.assignments = this.assignments.concat(newAssignment);
 		}
 
